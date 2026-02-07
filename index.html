@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nipuna Dilshan | Network Engineer Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"> 
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#00D4FF', // Cyan Neon
+                        dark: '#121216', // Deep Background
+                        card: '#1C1C22', // Card Background
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #121216;
+            color: #ffffff;
+        }
+
+        /* Hexagon Profile UI */
+        .hexagon-container {
+            position: relative;
+            width: 340px;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hexagon {
+            width: 300px;
+            height: 340px;
+            background: #00D4FF;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.6));
+            transition: all 0.4s ease;
+        }
+
+        .hexagon-inner {
+            width: 285px;
+            height: 325px;
+            background: #121216;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hexagon-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.0); 
+            object-position: center top;
+        }
+
+        .glow-background {
+            position: absolute;
+            z-index: -1;
+            filter: blur(80px);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, transparent 70%);
+            width: 120%;
+            height: 120%;
+        }
+
+        /* UI Enhancements */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00D4FF;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-neon {
+            background: #00D4FF;
+            color: #121216;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-neon:hover {
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00D4FF;
+            transition: 0.3s;
+        }
+
+        .social-btn:hover {
+            background: #00D4FF;
+            color: #121216;
+            transform: scale(1.1);
+        }
+
+        .glass-header {
+            background: rgba(18, 18, 22, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hobby-card {
+            background: rgba(28, 28, 34, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            border-color: #00D4FF;
+            transform: translateY(-5px);
+            background: rgba(0, 212, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="font-sans selection:bg-primary/30">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-header">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter cursor-pointer" onclick="window.scrollTo(0,0)">
+                Nipuna Dilshan<span class="text-primary">.</span>
+            </div>
+            
+            <div class="hidden md:flex gap-10 items-center text-sm font-semibold tracking-wide">
+                <a href="#home" class="text-primary">Home</a>
+                <a href="#about" class="nav-link text-gray-400 hover:text-white">About</a>
+                <a href="#education" class="nav-link text-gray-400 hover:text-white">Education</a>
+                <a href="#experience" class="nav-link text-gray-400 hover:text-white">Experience</a>
+                <a href="#skills" class="nav-link text-gray-400 hover:text-white">Skills</a>
+                <a href="#hobbies" class="nav-link text-gray-400 hover:text-white">Hobbies</a>
+                <a href="#contact" class="nav-link text-gray-400 hover:text-white">Contact</a>
+            </div>
+
+            <button onclick="toggleMenu()" class="md:hidden text-white">
+                <i class="fas fa-bars-staggered text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-dark/95 backdrop-blur-xl absolute top-full left-0 w-full p-8 border-b border-white/5 space-y-6">
+            <a href="#home" class="block text-primary font-bold" onclick="toggleMenu()">Home</a>
+            <a href="#about" class="block text-gray-300" onclick="toggleMenu()">About</a>
+            <a href="#education" class="block text-gray-300" onclick="toggleMenu()">Education</a>
+            <a href="#experience" class="block text-gray-300" onclick="toggleMenu()">Experience</a>
+            <a href="#skills" class="block text-gray-300" onclick="toggleMenu()">Skills</a>
+            <a href="#hobbies" class="block text-gray-300" onclick="toggleMenu()">Hobbies</a>
+            <a href="#contact" class="block text-gray-300" onclick="toggleMenu()">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center w-full">
+            
+            <!-- Left Content -->
+            <div class="order-2 lg:order-1">
+                <p class="text-white text-xl font-medium mb-3">Hello, It's Me</p>
+                <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tighter leading-none">
+                    Nipuna Dilshan
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-gray-200">
+                    And I'm a <span class="text-primary tracking-wide">Network Engineer and a Cybersecurity Enthusiast</span>
+                </h2>
+                <p class="text-gray-400 text-lg max-w-xl mb-10 leading-relaxed">
+                    Associate Engineer at Axiata Digital Labs specializing in Global IT Infrastructure and M365 Ecosystems. I build secure networks and optimize cloud environments for global enterprises.
+                </p>
+            </div>
+
+            <!-- Right Profile Hexagon -->
+            <div class="order-1 lg:order-2 flex justify-center items-center">
+                <div class="hexagon-container">
+                    <div class="glow-background"></div>
+                    <div class="hexagon">
+                        <div class="hexagon-inner">
+                            <img src="Nipuna Dilshan.png" alt="Nipuna Dilshan Profile Photo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-card/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -top-10 -left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+                    <h2 class="text-4xl font-bold mb-8">About <span class="text-primary">Me</span></h2>
+                    <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+                        <p>
+                            I am an experienced IT professional skilled in system and network administration, user and access management, and IT security implementation. I am adapt at providing technical support, troubleshooting hardware/software/network issues, and ensuring stable, secure operations.
+                        </p>
+                    </div>
+                    <div class="mt-10 grid grid-cols-2 gap-6">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-shield-check text-primary"></i>
+                            <span class="text-sm font-semibold uppercase tracking-wider">Security First</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-microchip text-primary"></i>
+                            <span class="text-sm font-semibold uppercase tracking-wider">Cloud Native</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-card p-1 rounded-3xl overflow-hidden border border-white/5">
+                    <div class="bg-dark/40 p-10 rounded-[calc(1.5rem-4px)]">
+                        <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                            <i class="fas fa-quote-left text-primary/40"></i>
+                            Mission Statement
+                        </h3>
+                        <p class="text-xl italic text-gray-300 leading-relaxed">
+                            "To architect and maintain resilient digital infrastructures that empower enterprises while ensuring the highest standards of cybersecurity and operational excellence."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 bg-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">My <span class="text-primary">Education</span></h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Masters -->
+                <div class="bg-card p-8 rounded-3xl border border-white/5 hover:border-primary/30 transition-all group">
+                    <div class="text-primary text-sm font-bold mb-4">2024 - 2026</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition">MSc in Computer Science</h3>
+                    <p class="text-gray-400 font-medium mb-4">University of Sri Jayewardenepura</p>
+                    <div class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-bold uppercase tracking-wider">Reading</div>
+                </div>
+
+                <!-- Degree -->
+                <div class="bg-card p-8 rounded-3xl border border-white/5 hover:border-primary/30 transition-all group">
+                    <div class="text-primary text-sm font-bold mb-4">2023 - 2024</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition">BEng (Hons) in Computer Networks</h3>
+                    <p class="text-gray-400 font-medium mb-4">London Metropolitan University</p>
+                    <div class="text-gray-500 text-sm italic">Lower Second Class Honors</div>
+                </div>
+
+                <!-- Diploma -->
+                <div class="bg-card p-8 rounded-3xl border border-white/5 hover:border-primary/30 transition-all group">
+                    <div class="text-primary text-sm font-bold mb-4">2019 - 2022</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition">HND in Network Engineering</h3>
+                    <p class="text-gray-400 font-medium">National Institute of Business Management</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="py-12 border-y border-white/5 bg-card/10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="text-4xl font-bold text-white mb-1 tracking-tight">3+</div>
+                <div class="text-primary text-xs font-bold uppercase tracking-widest">Years Experience</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-white mb-1 tracking-tight">10+</div>
+                <div class="text-primary text-xs font-bold uppercase tracking-widest">Certifications</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-white mb-1 tracking-tight">Azure</div>
+                <div class="text-primary text-xs font-bold uppercase tracking-widest">Enterprise Support</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-white mb-1 tracking-tight">MSc in Computer Science</div>
+                <div class="text-primary text-xs font-bold uppercase tracking-widest">Reading</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-card/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 text-center md:text-left">
+                <div>
+                    <h2 class="text-4xl font-bold mb-4">Work <span class="text-primary">Experience</span></h2>
+                    <p class="text-gray-400 max-w-lg">Managing critical infrastructure for Axiata Digital Labs.</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- ADL -->
+                <div class="bg-card p-8 rounded-3xl border border-white/5 hover:border-primary/20 transition flex flex-col md:flex-row gap-6 md:items-center">
+                    <div class="md:w-1/4 text-primary font-bold">Nov 2025 - Present</div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold">Associate Engineer - Global IT Infrastructure Support</h3>
+                        <p class="text-gray-300 font-medium mb-2">Axiata Digital Labs</p>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            Administering Microsoft 365 ecosystem: Intune, Entra ID (Azure AD), Exchange, and Azure. Specialized in network security and high-level VPN troubleshooting for global operations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ArcEye -->
+                <div class="bg-card p-8 rounded-3xl border border-white/5 hover:border-primary/20 transition flex flex-col md:flex-row gap-6 md:items-center">
+                    <div class="md:w-1/4 text-gray-500 font-bold">May 2022 - Nov 2025</div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold">IT Administrator (Contract)</h3>
+                        <p class="text-gray-300 font-medium mb-2">ArcEye Design Consultants</p>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            Full-spectrum system and network administration. Implemented IT security policies and managed user access. Strong focus on infrastructure stability and technical documentation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SLPA -->
+                <div class="bg-card p-8 rounded-3xl border border-white/5 hover:border-primary/20 transition flex flex-col md:flex-row gap-6 md:items-center">
+                    <div class="md:w-1/4 text-gray-500 font-bold">Jan 2022 - May 2022</div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold">Intern - Network Administrator</h3>
+                        <p class="text-gray-300 font-medium mb-2">Sri Lanka Ports Authority</p>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            Gained hands-on experience in enterprise network health monitoring, performance optimization, and hardware troubleshooting for large-scale operations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Grid -->
+    <section id="skills" class="py-24 bg-card/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Technical <span class="text-primary">Skills</span></h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Infrastructure -->
+                <div class="group bg-card p-10 rounded-3xl border border-white/5 hover:border-primary/50 transition-all duration-500">
+                    <i class="fas fa-network-wired text-5xl text-primary mb-8 group-hover:scale-110 transition"></i>
+                    <h3 class="text-2xl font-bold mb-6 tracking-tight">Infrastructure</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center bg-dark/50 p-3 rounded-xl">
+                            <span class="text-sm font-medium">Azure / Entra ID</span>
+                            <span class="text-primary text-xs font-bold">Expert</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-dark/50 p-3 rounded-xl">
+                            <span class="text-sm font-medium">M365 Ecosystem</span>
+                            <span class="text-primary text-xs font-bold">Enterprise</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-dark/50 p-3 rounded-xl">
+                            <span class="text-sm font-medium">Windows/Linux Admin</span>
+                            <span class="text-primary text-xs font-bold">Advanced</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity -->
+                <div class="group bg-card p-10 rounded-3xl border border-white/5 hover:border-primary/50 transition-all duration-500">
+                    <i class="fas fa-user-shield text-5xl text-primary mb-8 group-hover:scale-110 transition"></i>
+                    <h3 class="text-2xl font-bold mb-6 tracking-tight">Security</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center bg-dark/50 p-3 rounded-xl">
+                            <span class="text-sm font-medium">Network Security</span>
+                            <span class="text-primary text-xs font-bold">CCNA Netacad</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-dark/50 p-3 rounded-xl">
+                            <span class="text-sm font-medium">Fortinet NSE I-III</span>
+                            <span class="text-primary text-xs font-bold">Certified</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-dark/50 p-3 rounded-xl">
+                            <span class="text-sm font-medium">Intune / Security</span>
+                            <span class="text-primary text-xs font-bold">Advanced</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics & Dev -->
+                <div class="group bg-card p-10 rounded-3xl border border-white/5 hover:border-primary/50 transition-all duration-500">
+                    <i class="fas fa-terminal text-5xl text-primary mb-8 group-hover:scale-110 transition"></i>
+                    <h3 class="text-2xl font-bold mb-6 tracking-tight">Data & Dev</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center bg-dark/50 p-3 rounded-xl">
+                            <span class="text-sm font-medium">Python (Data Science)</span>
+                            <span class="text-primary text-xs font-bold">Pandas/NumPy</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-dark/50 p-3 rounded-xl">
+                            <span class="text-sm font-medium">Power BI / SQL</span>
+                            <span class="text-primary text-xs font-bold">Analysis</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-dark/50 p-3 rounded-xl">
+                            <span class="text-sm font-medium">Critical Thinking</span>
+                            <span class="text-primary text-xs font-bold">Expert</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Beyond the <span class="text-primary">Servers</span></h2>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Music -->
+                <div class="hobby-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-primary">
+                        <i class="fas fa-headphones-simple text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Listening to Music</h3>
+                </div>
+                <!-- Reading -->
+                <div class="hobby-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-primary">
+                        <i class="fas fa-book-open-reader text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Reading Books</h3>
+                </div>
+                <!-- Cricket -->
+                <div class="hobby-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-primary">
+                        <i class="fas fa-baseball-bat-ball text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Playing Cricket</h3>
+                </div>
+                <!-- TV/Movies -->
+                <div class="hobby-card p-8 rounded-3xl text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-primary">
+                        <i class="fas fa-clapperboard text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Watching TV Series & Movies</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact" class="py-24 border-t border-white/5 bg-dark">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-12">Get In <span class="text-primary">Touch</span></h2>
+            
+            <div class="grid md:grid-cols-2 max-w-2xl mx-auto gap-8 mb-16">
+                <a href="mailto:nmeddepola97@gmail.com" class="p-8 bg-card rounded-2xl border border-white/5 hover:border-primary transition group">
+                    <i class="fas fa-envelope text-3xl text-primary mb-4 group-hover:scale-110 transition"></i>
+                    <p class="text-gray-400 text-sm">Email :</p>
+                    <p class="font-bold">nmeddepola97@gmail.com</p>
+                </a>
+                <a href="tel:+94768467900" class="p-8 bg-card rounded-2xl border border-white/5 hover:border-primary transition group">
+                    <i class="fas fa-phone-alt text-3xl text-primary mb-4 group-hover:scale-110 transition"></i>
+                    <p class="text-gray-400 text-sm">Contact :</p>
+                    <p class="font-bold">+94 76 846 7900</p>
+                </a>
+            </div>
+
+            <div class="flex justify-center gap-6 mb-12">
+                <a href="https://www.linkedin.com/in/nipuna-dilshan-b2820719a" target="_blank" class="text-2xl text-gray-500 hover:text-primary transition"><i class="fab fa-linkedin"></i></a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nmeddepola97@gmail.com" target="_blank" class="text-2xl text-gray-500 hover:text-primary transition">
+                <i class="fas fa-at"></i>
+            </div>
+            <p class="text-gray-600 text-sm font-medium tracking-wide">© 2026 @Nipuna Dilshan. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu'); 
+            menu.classList.toggle('hidden');
+        }
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-3');
+                nav.classList.remove('py-5');
+            } else {
+                nav.classList.add('py-5');
+                nav.classList.remove('py-3');   
+            }
+        });
+    </script>
+</body>
+</html>
